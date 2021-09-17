@@ -11,9 +11,12 @@ from redact import get_censored_json
 
 PORT = 8080
 
+
 class ExampleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/operations':
+            self.send_error(404)
+        elif self.path == '/favicon.ico':
             self.send_error(404)
         elif self.path == '/':
             self.send_response(200)
