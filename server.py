@@ -7,10 +7,9 @@
 
 import http.server
 import socketserver
-import redact
+from redact import get_censored_json
 
 PORT = 8080
-
 
 class ExampleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
@@ -39,7 +38,7 @@ class ExampleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
-            data = redact.get_censored_json(self.path)
+            data = get_censored_json(self.path)
             payload = (
                 f'<head><title>{self.path}</title><link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"></head>'
                 f'<body style="margin-top: 40px">'
