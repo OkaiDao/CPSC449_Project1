@@ -13,18 +13,18 @@ using redact URL connect to the HTTP server using redact.py/'message_param'/'sub
 first paramater, message_param, will generate a message from FOAAS ussing their API and the second parameter, subtitle_param, writes the string as a subtitle.
 
 redact.py 
-	contains functions that make API calls to FOAAS and purgomalum
+	Contains functions that make API calls to FOAAS and purgomalum
 	
 make_request(url, path)
-	takes url and path of a request to create a connection to the http server and loads a JSON object and returns the object
+	Takes url and path of a request to create a connection to the http server and load a JSON object, then returns the object data
 
 get_censored_json(path)
-	Checks if the path is valid with the first character of the string being '/'
+	Checks if the path is valid with the first character of the string being '/', if it is not exit and output invalid path.
 	If the path is '/operations' return the json data by calling make_request 
-	otherwise if the path is valid use the make_request function to collect the data with the valid path
-	It then parses the message and is used to make a api call to the purgomalum with the parsed message and path and calls the 
-		make_request to pull the data from the updated path.
-	It returns the data as a dictionary with message, and subtitle.
+	Otherwise if the path is valid use the make_request function to collect the data with the valid path,
+	then the function parses the message and it is used to make a api call to the purgomalum with the parsed message and path. 
+	Then the function calls the make_request to pull the data from the updated path.
+	It returns the data as a dictionary with message, and subtitle in the format {"message": data2["result"], "subtitle": data["subtitle"]}
 
 cmd_censored_json(path)
 	prints the data of the json data from the path using get_censored_json to the console
