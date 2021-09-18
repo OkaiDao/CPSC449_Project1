@@ -27,19 +27,19 @@ get_censored_json(path)
 	It returns the data as a dictionary with message, and subtitle in the format {"message": data2["result"], "subtitle": data["subtitle"]}
 
 cmd_censored_json(path)
-	prints the data of the json data from the path using get_censored_json to the console
+	Prints the data of the json data from the path using get_censored_json to the console.
 
 main()
-	if length of sys.argv is not 2 it exits, if it does print data to console.
+	If length of sys.argv is not 2 it exits, if it does print data to console.
 
 server.py
-	subclass of http.server.BaseHTTPRequestHandler with an implementation of the do_GET() function that retrives a path from an incoming request to make an API call to FOAAS and PurgoMalum. Any of the other paths and filters from foaas produces a message with the exception of the path '/operations' and a '/' path.
+	Subclass of http.server.BaseHTTPRequestHandler with an implementation of the do_GET() function that retrives a path from an incoming request to make an API call to FOAAS 	  and PurgoMalum. Any of the other paths and filters from foaas produces a message with the exception of the path '/operations' and a '/' path.
 
 class ExampleHTTPRequestHandler(http.server.BaseHTTPRequestHandler)
-	checks if path is '/operations', if it is send 404 error
-	checks if path is '/favicon.ico', if it is send 404 error
-	checks if path is '/', if it is send response 200 and show a blank
-	otherwise send 200 response and show content using get_censored_json from redact.py
+	Checks if path is '/operations', if it is send 404 error.
+	Checks if path is '/favicon.ico', if it is send 404 error.
+	Checks if path is '/', if it is send response 200 and links to foaas.com
+	Otherwise send 200 response and show content using get_censored_json from redact.py
 
 with socketserver.TCPServer(("", PORT), ExampleHTTPRequestHandler) as httpd:
 	Connects to the http server
