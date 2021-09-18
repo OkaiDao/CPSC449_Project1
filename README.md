@@ -5,15 +5,16 @@ Ismael Barajas
 Zack Sarvas
 Jonathan Dao
 
-The project integrates serveses with HTTP and JSON. It uses the FOAAS and purgomalum api. 
-The user puts in a path, and if the correct path is called from redact.py it creates a payload to create an HTML outline showing a message to the user copying the bootstrap styling and the link to foaas.com   
+The project integrates services with HTTP and JSON, that uses FOAAS and purgomalum api. 
+The user enter a path, and if there is a correct path called from redact.py, a payload  is created and makes an HTML outline showing a message to the user copying the bootstrap styling from foaas.com and the link to website.   
 
 How To Run
 using redact URL connect to the HTTP server using redact.py/'message_param'/'subtitle_param'
 first paramater, message_param, will generate a message from FOAAS ussing their API and the second parameter, subtitle_param, writes the string as a subtitle.
 
 redact.py 
-
+	contains functions that make API calls to FOAAS and purgomalum
+	
 make_request(url, path)
 	takes url and path of a request to create a connection to the http server and loads a JSON object and returns the object
 
@@ -32,6 +33,7 @@ main()
 	if length of sys.argv is not 2 it exits, if it does print data to console.
 
 server.py
+	subclass of http.server.BaseHTTPRequestHandler with an implementation of the do_GET() function that retrives a path from an incoming request to make an API call to FOAAS and PurgoMalum. Any of the other paths and filters from foaas produces a message with the exception of the path '/operations' and a '/' path.
 
 class ExampleHTTPRequestHandler(http.server.BaseHTTPRequestHandler)
 	checks if path is '/operations', if it is send 404 error
