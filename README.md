@@ -2,7 +2,7 @@
 CPSC 449 - Web Back-End Engineering Project 1
 
 Ismael Barajas
-Zack Sarvas
+Zach Sarvas
 Jonathan Dao
 
 The project integrates services with HTTP and JSON, that uses FOAAS and purgomalum api. 
